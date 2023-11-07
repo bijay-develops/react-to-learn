@@ -1,7 +1,13 @@
 
+import Happy from "./happy"
+
 function App() {
   return (
-    <h1>Hello World!!</h1>
+  <>
+    <Happy/>
+    <h2>Playing With Codes</h2>
+    <p>As a Developer.</p>
+  </>
   )
 }
 
