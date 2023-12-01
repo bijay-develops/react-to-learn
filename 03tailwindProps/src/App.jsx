@@ -2,6 +2,7 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import card from './components/card'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -10,7 +11,9 @@ function App() {
     <>
       <h1 className='bg-green-400 test-black p-4 rounded-xl'>Hello Devs!!</h1>  
 
-      <div class="flex font-sans">
+      <card />
+
+      {/* <div class="flex font-sans">
   <div class="flex-none w-48 relative">
     <img src="https://scontent.fkep3-1.fna.fbcdn.net/v/t39.30808-6/291898125_1479465415856980_6911077526514162129_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=783fdb&_nc_ohc=5YMWY1H_TRsAX_-4uyE&_nc_ht=scontent.fkep3-1.fna&oh=00_AfCXtjoWJFbG1WcsF0k6a0a1kOytxZ3b9aqtZjX4YPgr7w&oe=656DDFEF" alt="" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
   </div>
@@ -79,7 +82,7 @@ function App() {
       Free shipping on all continental US orders.
     </p>
   </form>
-</div>
+</div> */}
 
     </>
   )
