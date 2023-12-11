@@ -1,6 +1,6 @@
 import React from 'react'
 
-function card() {
+function card(props) {
   return (
     <div className="relative h-[400px] w-[300px] rounded-md">
   <img
