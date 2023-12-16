@@ -1,6 +1,7 @@
 import React from 'react'
 
 function card(props) {
+  console.log("props", props);
   return (
     <div className="relative h-[400px] w-[300px] rounded-md">
   <img
