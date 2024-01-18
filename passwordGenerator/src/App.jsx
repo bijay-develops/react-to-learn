@@ -1,4 +1,4 @@
-import { useCallback, useState, useEffect } from 'react'
+import { useCallback, useState, useEffect, useRef } from 'react'
 import './App.css'
 
 function App() {  
@@ -9,30 +9,40 @@ function App() {
   const [charAllowed, setCharAllowed] = useState(false)
   const [password, setPassword] = useState("")
 
+
   // Password generator function
-  const passwordGenerator = useCallback(() => {
-    let pass = '';
-    let str = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+  const passwordGenerator = useCallback(() => {  // useCallback memorizes the function and stores as cache
+          let pass = '';
+          let str = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 
-    // Include numbers and special characters if allowed
-    if (numberAllowed) str += '0123456789';
-    if (charAllowed) str += '!@#$%^&*()+-={}[]:<>.?/';
+          // Include numbers and special characters if allowed
+          if (numberAllowed) str += '0123456789';
+          if (charAllowed) str += '!@#$%^&*()+-={}[]:<>.?/';
 
-    for (let i = 1; i <= length; i++) {
-      // Generate a random index within the string length
-      let char = Math.floor(Math.random() * str.length);
-      // Append the selected character to the password
-      pass += str.charAt(char);
-    }
+          for (let i = 1; i <= length; i++) {
+            // Generate a random index within the string length
+            let char = Math.floor(Math.random() * str.length);
+            // Append the selected character to the password
+            pass += str.charAt(char);
+          }
 
-    // Set the generated password to state
-    setPassword(pass);
-  }, [length, numberAllowed, charAllowed, setPassword]);
+          // Set the generated password to state
+          setPassword(pass);
+        }, [length, numberAllowed, charAllowed, setPassword]);
 
   // Call the password generator when the component mounts or when dependencies change
   useEffect(() => {
-    passwordGenerator();
-  }, [length, numberAllowed, charAllowed, passwordGenerator]);
+            passwordGenerator();
+          }, [length, numberAllowed, charAllowed, passwordGenerator]);
+
+  //For copy button 
+  const passwordRef = useRef(null) //For the selection of selection and range selection method
+          const copyPasswordToClipboard = useCallback(() => {
+            passwordRef.current?.select();   //For selecting light color 
+            passwordRef.current?.setSelectionRange(0,8); //For Range of Selection 
+            window.navigator.clipboard.writeText(password)
+          },[password]);
+
 
   return (
     <>
@@ -45,8 +55,10 @@ function App() {
           className='outline-none w-full py-1 px-3'
           placeholder='password'
           readOnly
+          ref={passwordRef}
           />
           <button //For copy button only 
+          onClick = {copyPasswordToClipboard}
           className='text-black bg-blue-400 shrink-0 outline-none px-3 py-0.5'>Copy</button> 
         </div>  
       </div>
